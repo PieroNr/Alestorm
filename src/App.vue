@@ -1,22 +1,29 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import Sea from "./components/Sea.vue";
 </script>
 
 <template>
-  <HelloWorld/>
+  <div>
+      <img class="logo" src="/alestorm-logo.svg" alt="alestorm logo" />
+      <Sea />
+    
+  </div>
 </template>
+<!-- put style type to scss -->
+<style lang="scss">
+.logo{
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+  width: 1200px;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0 auto;
+  display: block;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+body{
+  background: #171921;
+  overflow: hidden;
 }
 </style>
