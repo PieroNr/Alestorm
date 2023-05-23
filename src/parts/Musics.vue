@@ -45,6 +45,7 @@ const album :AlbumData = {
     <h2>Our music</h2>
 
     <AlbumComponent :album="album"/>
+    <AlbumComponent :album="album"/>
   </div>
 </template>
 
