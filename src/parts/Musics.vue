@@ -1,17 +1,23 @@
 <script setup lang="ts">
 
+import Album from "../components/Album.vue";
 </script>
 
 <template>
   <div class="musics">
-    <p>coucou</p>
+    <h2>Our music</h2>
+    <Album/>
   </div>
 </template>
 
 <style scoped lang="scss">
 .musics {
   width: 100%;
-  height: 100vh;
-  background: #0d0d0d;
+  padding-top: 20vh;
+
+  h2 {
+
+  }
 }
+
 </style>

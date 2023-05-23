@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Sea from "./components/Sea.vue";
-import Musics from "./components/Musics.vue";
+import Sea from "./parts/Sea.vue";
+import Musics from "./parts/Musics.vue";
 </script>
 
 <template>
