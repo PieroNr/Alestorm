@@ -14,8 +14,6 @@
     "@vueuse/core": "^10.1.2",
     "gsap": "^3.11.5",
     "sass": "^1.62.1",
-    "three": "^0.134.0",
-    "troisjs": "^0.3.4",
     "vue": "^3.2.47",
     "vue-use": "^0.2.0"
   },
@@ -25,6 +23,7 @@
     "@vitejs/plugin-vue": "^4.1.0",
     "typescript": "^5.0.2",
     "vite": "^4.3.2",
+    "vite-plugin-glsl": "^1.1.2",
     "vue-tsc": "^1.4.2"
   }
 }

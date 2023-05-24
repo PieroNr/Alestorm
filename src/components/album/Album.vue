@@ -66,6 +66,7 @@ onMounted(() => {
   grid-template-columns: 1fr 1fr;
   width: clamp(300px, 80%, 800px);
   margin: 40px auto;
+  gap: 20px;
 
   &__right {
     text-align: left;

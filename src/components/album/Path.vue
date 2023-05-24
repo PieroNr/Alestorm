@@ -31,7 +31,7 @@ function generate(svg: Container) {
   const {width,height} = svg.viewbox();
    svgHeight.value = height;
   const stepSize = height / numSteps;
-  // clear the contents of the SVG
+  // clear the contents of the music
   svg.clear();
 
   // plot 10 equally spaced points along the canvas width
