@@ -5,6 +5,7 @@ import Map from "./Map.vue";
 import {onMounted, PropType, ref} from "vue";
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
+import Youtube from "./icons/youtube.vue";
 
 
 const songElements = ref<HTMLElement[]>([]);
@@ -52,7 +53,9 @@ onMounted(() => {
           <div class="song-list__item__title">
             <p>{{ song.title }}</p>
           </div>
-          <a class="song-list__item__link" :href="song.link" target="_blank"><img src="../../assets/img/youtube.svg"></a>
+          <a class="song-list__item__link" :href="song.link" target="_blank">
+            <youtube/>
+          </a>
         </div>
       </div>
 
@@ -113,7 +116,7 @@ onMounted(() => {
       display: flex;
       color: inherit;
 
-      img {
+      svg {
         height: 30px;
         aspect-ratio: 1/1;
       }

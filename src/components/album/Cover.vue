@@ -17,10 +17,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="cover" ref="container">
+  <div class="cocover" ref="container" >
   </div>
 </template>
 
 <style scoped lang="scss">
-
+.cocover {
+  width: 100%;
+  aspect-ratio: 1/1;
+}
 </style>

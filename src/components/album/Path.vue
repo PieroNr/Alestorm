@@ -132,7 +132,7 @@ function onMouseMove(e: MouseEvent) {
           gsap.to(point, {
             x: pointOrigin.x,
             y: pointOrigin.y,
-            ease: "elastic.out(1, 0.3)",
+            ease: "elastic.out",
             duration: 1
           });
         }

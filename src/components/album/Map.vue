@@ -52,7 +52,7 @@ const positions = [
 const remainingPositions = shuffle([...positions])
 
 function getPosition() {
-  return remainingPositions.pop() || 'center-right'
+  return remainingPositions.pop()
 }
 
 
@@ -76,9 +76,9 @@ onBeforeMount(() => {
 onMounted(() => {
   mapElements.value.forEach((e) => {
     const animation = gsap.to(e, {
-      y: `${random(-30, 30)}%`,
-      x: `${random(-30, 30)}%`,
-      duration: random(1.5, 3),
+      y: `${random(-25, 25)}%`,
+      x: `${random(-25, 25)}%`,
+      duration: random(2, 3),
       repeat: -1,
       yoyo: true,
       ease: 'power1.inOut',
