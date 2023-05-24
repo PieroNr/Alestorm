@@ -89,3 +89,15 @@ h2 {
   font-size: 100px;
   line-height: 120px;
 }
+
+body[data-theme="light"] {
+  color: #171921;
+
+  .cls-1 {
+    fill: #171921 !important;
+  }
+
+  .cls-2 {
+    stroke:#171921 !important;
+  }
+}

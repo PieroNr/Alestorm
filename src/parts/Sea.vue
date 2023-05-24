@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {onMounted, ref, watch } from 'vue';
 import {gsap} from 'gsap';
+import {func} from "three/examples/jsm/nodes/shadernode/ShaderNodeBaseElements";
 
 const boatSrc = ref('/src/assets/img/boat.png');
 const lighthouseSrc = ref('/src/assets/svg/lightHouse-off.svg');
@@ -50,7 +51,7 @@ const toggleLighthouse = () => {
         duration: 1,
         ease: 'expo.easeIn',
       });
-    
+
   } else {
     stars.forEach((star) => {
         const scale = Math.random() * 0.2 + 2; // Facteur d'échelle aléatoire
@@ -91,7 +92,8 @@ const toggleLighthouse = () => {
   });
 };
 
-watch(isLighthouseOn, (newValue) => {
+watch(isLighthouseOn, (newValue : boolean) => {
+  document.body.dataset.theme = newValue ?   'light' : 'dark';
   document.documentElement.style.setProperty('--background-color', newValue ? '#74bbff' : '#171921');
   const waves = document.querySelectorAll('.wave');
   waves.forEach((wave) => {
@@ -279,6 +281,7 @@ window.addEventListener('mousemove', parallax);
 
 // Appel de la méthode au montage du composant
 onMounted(() => {
+  document.body.dataset.theme =  'dark';
   generateStars();
   generateClouds();
   swayBoat();
@@ -339,7 +342,7 @@ body {
   width: 100%;
   height: 100%;
   z-index: 0;
-  
+
 }
 
 .star {
@@ -412,7 +415,7 @@ body {
   z-index: 4;
   rotate: 10deg;
   -webkit-filter: drop-shadow(5px 5px 5px #000000);
-  
+
 }
 
 .lighthouse {
