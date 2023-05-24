@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import Sea from "./parts/Sea.vue";
 import Musics from "./parts/Musics.vue";
+import Band from "./parts/Band.vue";
 </script>
 
 <template>
-  <div>
     <Sea/>
     <Musics/>
-  </div>
+    <Band/>
 </template>
 <!-- put style type to scss -->
 <style lang="scss">
