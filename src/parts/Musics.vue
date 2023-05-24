@@ -7,6 +7,7 @@ const album :AlbumData = {
   label:  "Napalm Records",
   date: "24/06/2022",
   cover: "/covers/cover1.jpg",
+  heightCover: "/covers/cover1-heightmap.png",
   songs: [
     {
       title: "Magellan's Expedition",
@@ -44,7 +45,6 @@ const album :AlbumData = {
   <div class="musics">
     <h2>Our music</h2>
 
-    <AlbumComponent :album="album"/>
     <AlbumComponent :album="album"/>
   </div>
 </template>

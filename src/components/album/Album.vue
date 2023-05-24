@@ -38,7 +38,7 @@ onMounted(() => {
 <template>
   <Path class="path"/>
   <div class="album" ref="albumElement">
-    <Cover :url="album.cover"/>
+    <Cover :url="album.cover" :height-url="album.heightCover"/>
 
     <div class="album__right">
       <h4 class="album__title">{{album.title}}</h4>

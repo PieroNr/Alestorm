@@ -5,6 +5,7 @@ export interface AlbumData {
     label: string;
     date: string;
     cover: string;
+    heightCover : string;
     songs: Song[];
 }
 
