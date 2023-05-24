@@ -13,7 +13,7 @@ const currentPath = ref<Path | null>(null);
 const points = ref<{ x: number, y: number }[]>([]);
 const liquidPoints = ref<{ x: number, y: number }[]>([]);
 const maxDist = ref<null | { x: number, y: number }>(null)
-const svgHeight = ref<null | number>(null)
+const props = defineProps<{svgHeight:number}>()
 const numSteps = 8;
 const options = {
   detail: 16,
@@ -29,9 +29,8 @@ const transformCoords = ref<null | any>(null)
 
 function generate(svg: Container) {
   const {width,height} = svg.viewbox();
-   svgHeight.value = height;
   const stepSize = height / numSteps;
-  // clear the contents of the music
+  // clear the contents of the icons
   svg.clear();
 
   // plot 10 equally spaced points along the canvas width
@@ -60,7 +59,7 @@ function generate(svg: Container) {
   // render an svg <path> using the spline path data
   currentPath.value = svg.path(pathData).stroke({
     color: 'white',
-    width: 4,
+    width: 6,
     dasharray: "20 20",
     linejoin: 'round'
   }).fill("none");
@@ -147,11 +146,12 @@ onMounted(() => {
   generate(svg);
   transformCoords.value = createCoordsTransformer(container.value);
   gsap.to(maskElement.value.node, {
-    height:svgHeight.value,
+    height:props.svgHeight,
     duration: 1,
     scrollTrigger: {
       trigger: container.value,
-      scrub:0
+      scrub:0.3,
+      start: 'top 50%',
     },
     ease: 'power3.easeOut'
   })
@@ -165,7 +165,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <svg class="container" height="700" viewBox="0 0 193 691" fill="none" xmlns="http://www.w3.org/2000/svg"
+  <svg class="container" :height="svgHeight" viewBox="0 0 193 691" fill="none" xmlns="http://www.w3.org/2000/svg"
        ref="container">
   </svg>
 

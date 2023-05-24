@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import {AlbumData} from "../../types/AlbumData.ts";
 import Cover from "./Cover.vue";
+import Map from "./Map.vue";
 import {onMounted, PropType, ref} from "vue";
-import Path from "./Path.vue";
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 
@@ -15,6 +15,10 @@ defineProps({
   album: {
     type: Object as PropType<AlbumData>,
     required: true
+  },
+  inversed: {
+    type: Boolean,
+    default: false
   }
 })
 onMounted(() => {
@@ -36,9 +40,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <Path class="path"/>
-  <div class="album" ref="albumElement">
-    <Cover :url="album.cover" :height-url="album.heightCover"/>
+  <Map/>
+  <div class="album" ref="albumElement" :class="{'album--inversed':inversed}">
+    <Cover :url="album.cover" :height-url="album.heightCover" class="album__left"/>
 
     <div class="album__right">
       <h4 class="album__title">{{album.title}}</h4>
@@ -64,12 +68,22 @@ onMounted(() => {
 .album {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-areas: 'left right';
   width: clamp(300px, 80%, 800px);
   margin: 40px auto;
   gap: 20px;
 
+  &--inversed {
+    grid-template-areas: 'right left';
+  }
+
   &__right {
+    grid-area: right;
     text-align: left;
+  }
+
+  &__left {
+    grid-area: left;
   }
 
   &__title {
