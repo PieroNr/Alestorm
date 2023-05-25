@@ -116,7 +116,8 @@ const toggleLighthouse = () => {
   });
 };
 
-watch(isLighthouseOn, (newValue) => {
+watch(isLighthouseOn, (newValue : boolean) => {
+  document.body.dataset.theme = newValue ?   'light' : 'dark';
   document.documentElement.style.setProperty('--background-color', newValue ? '#74bbff' : '#171921');
   const waves = document.querySelectorAll('.wave');
   waves.forEach((wave) => {
@@ -342,6 +343,7 @@ document.body.addEventListener('mousemove', parallax);
 
 // Appel de la méthode au montage du composant
 onMounted(() => {
+  document.body.dataset.theme =  'dark';
   generateStars();
   generateClouds();
   swayBoat();
@@ -403,7 +405,7 @@ body {
   width: 100%;
   height: 100%;
   z-index: 0;
-  
+
 }
 
 .star {
@@ -478,7 +480,7 @@ body {
   z-index: 4;
   rotate: 10deg;
   -webkit-filter: drop-shadow(5px 5px 5px #000000);
-  
+
 }
 
 .lighthouse {
