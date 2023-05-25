@@ -7,6 +7,10 @@
     src: url('./assets/fonts/Windlass.ttf');
 }
 
+body{
+  overflow-x: hidden;
+}
+
 :root {
   font-family: "Noto Serif", serif;
   line-height: 1.5;
@@ -15,6 +19,7 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background: #171921;
+  
 
 
   font-synthesis: none;

@@ -1,11 +1,21 @@
 <script setup lang="ts">
-import {onMounted, ref, watch } from 'vue';
+import {onMounted, ref, watch, defineProps } from 'vue';
 import {gsap} from 'gsap';
+import { TextPlugin } from "gsap/TextPlugin";
+
+gsap.registerPlugin(TextPlugin);
 
 const boatSrc = ref('/src/assets/img/boat.png');
 const lighthouseSrc = ref('/src/assets/svg/lightHouse-off.svg');
 const lighthouseOpacity = ref(1);
 const isLighthouseOn = ref(false);
+
+const props = defineProps({
+  isLoading: {
+    type: Boolean,
+    required: true,
+  },
+});
 
 const toggleLighthouse = () => {
   const lighthouseNewSrc = lighthouseSrc.value.includes('off') ? '/src/assets/svg/lightHouse-on.svg' : '/src/assets/svg/lightHouse-off.svg';
@@ -50,7 +60,12 @@ const toggleLighthouse = () => {
         duration: 1,
         ease: 'expo.easeIn',
       });
-    
+
+      var tl = gsap.timeline();
+      tl.to(".logo", { duration: 0.75, opacity: 0, ease: "power1.ease" });
+      tl.to(".logo", { duration: 0, x: "-50%", fontFamily: "Comic sans ms", ease: "power1.ease", textShadow: "0px 0px 10px #fff" });
+      tl.to(".logo", { duration: 0.75, opacity: 1, ease: "power1.ease" });
+
   } else {
     stars.forEach((star) => {
         const scale = Math.random() * 0.2 + 2; // Facteur d'échelle aléatoire
@@ -69,6 +84,11 @@ const toggleLighthouse = () => {
         duration: 1,
         ease: 'expo.easeIn',
       });
+
+      var tl = gsap.timeline();
+      tl.to(".logo", { duration: 0.75, opacity: 0, ease: "power1.ease" });
+      tl.to(".logo", { duration: 0, fontFamily: "Windlass", ease: "power1.ease", textShadow: "0 0 5px #c5c5c5, 0 0 10px #c5c5c5, 0 0 15px #c5c5c5, 0 0 20px #3cd013, 0 0 30px #3cd013, 0 0 40px #3cd013, 0 0 55px #3cd013, 0 0 75px #3cd013" });
+      tl.to(".logo", { duration: 0.75, opacity: 1, ease: "power1.ease" });
   }
 
 
@@ -79,12 +99,17 @@ const toggleLighthouse = () => {
     onComplete: () => {
       gsap.to(".boat", {
         y: "100%",
-        opacity: 1,
         duration: 1,
         ease: 'expo.inOut',
         onComplete: () => {
           boatSrc.value = boatNewSrc;
-          gsap.fromTo(".boat", { y: "100%" }, { y: "0%", opacity: 1, duration: 1, ease: 'power1.inOut' });
+          setTimeout(() => {
+            gsap.to(".boat", {
+              y: 0,
+              duration: 1,
+              ease: 'power1.easeIn',
+            });
+          }, 300);
         }
       });
     }
@@ -101,6 +126,35 @@ watch(isLighthouseOn, (newValue) => {
       wave.classList.remove('filter-active');
     }
   });
+});
+
+const preLoading = () => {
+  var tl = gsap.timeline({repeat: 0});
+  tl.from(".logo", {duration: 1, opacity: 0, ease: 'power1.easeIn'})
+    .to(".logo", {duration: 1, color: "#fff", textShadow: "0 0 5px #c5c5c5, 0 0 10px #c5c5c5, 0 0 15px #c5c5c5, 0 0 20px #3cd013, 0 0 30px #3cd013, 0 0 40px #3cd013, 0 0 55px #3cd013, 0 0 75px #3cd013", ease: 'power1.easeIn'})
+    .to(".logo", {duration: 0.05, color: "#2a2a2a", textShadow: "none", ease: 'power1.easeIn'})
+    .to(".logo", {duration: 0.1, color: "#fff", textShadow: "0 0 5px #c5c5c5, 0 0 10px #c5c5c5, 0 0 15px #c5c5c5, 0 0 20px #3cd013, 0 0 30px #3cd013, 0 0 40px #3cd013, 0 0 55px #3cd013, 0 0 75px #3cd013", ease: 'power1.easeIn'})
+    .to(".logo", {duration: 0.05, color: "#2a2a2a", textShadow: "none", ease: 'power1.easeIn'})
+    .to(".logo", {duration: 0.7, color: "#fff", textShadow: "0 0 5px #c5c5c5, 0 0 10px #c5c5c5, 0 0 15px #c5c5c5, 0 0 20px #3cd013, 0 0 30px #3cd013, 0 0 40px #3cd013, 0 0 55px #3cd013, 0 0 75px #3cd013", ease: 'power1.easeIn'})
+    .to(".logo", {duration: 0.2, color: "#2a2a2a", textShadow: "none", ease: 'power1.easeIn'})
+    .to(".logo", {duration: 1, color: "#fff", textShadow: "0 0 5px #c5c5c5, 0 0 10px #c5c5c5, 0 0 15px #c5c5c5, 0 0 20px #3cd013, 0 0 30px #3cd013, 0 0 40px #3cd013, 0 0 55px #3cd013, 0 0 75px #3cd013", ease: 'power1.easeIn'})
+    .from(".stars-container", {duration: 1, y: "-100%", ease: 'power1.easeIn'}, "<50%")
+    .from(".wave", {duration: 1, y: "100%", ease: 'power1.easeIn', onComplete: () => { animateWaves();}})
+    .from(".lighthouse", {duration: 1, y: "150%", ease: 'power1.easeIn'},"<50%")
+    .from(".boat", {duration: 1, y: "150%", ease: 'power1.easeIn'},"<50%")
+    .from(".clouds-container", {duration: 1, y: "-100%", ease: 'power1.easeIn', onComplete: () => {
+      document.body.classList.remove('overflow-hidden');
+    }},"<")
+
+   
+}
+
+watch(props, (newValue) => {
+  
+  if (!newValue.isLoading) {
+   preLoading();
+   
+  }
 });
 
 const generateClouds = () => {
@@ -188,6 +242,16 @@ const swayBoat = () => {
   });
 };
 
+const animateLogo = () => {
+  gsap.to(".logo", {
+    y: 10,
+    duration: 2,
+    repeat: -1,
+    yoyo: true,
+    ease: 'power1.inOut'
+  });
+};
+
 const animateWaves = () => {
   const waveOne = ".wave-one";
   const waveTwo = ".wave-two";
@@ -239,7 +303,6 @@ const parallax = (event) => {
 
   gsap.to(".boat", {
     x: xPos/2, // Ajustez la vitesse de déplacement horizontal du bateau
-    y: yPos/2, // Ajustez la vitesse de déplacement vertical du bateau
     duration: 0.5,
     ease: 'power2.out'
   });
@@ -275,14 +338,15 @@ const parallax = (event) => {
   });
 };
 
-window.addEventListener('mousemove', parallax);
+document.body.addEventListener('mousemove', parallax);
 
 // Appel de la méthode au montage du composant
 onMounted(() => {
   generateStars();
   generateClouds();
   swayBoat();
-  animateWaves();
+  animateLogo();
+  
 });
 
 
@@ -292,7 +356,7 @@ onMounted(() => {
   <div class="sea">
     <div class="stars-container"></div>
     <div class="clouds-container"></div>
-    <img class="logo" src="/alestorm-logo.svg" alt="alestorm logo"/>
+    <h2 class="logo">Alestorm</h2>
     <img class="boat" ref="boat" :src="boatSrc" alt="boat"/>
     <img class="wave wave-one" :class="{ 'filter-active': isLighthouseOn }" src="../assets/img/wave-1.png" alt="wave"/>
     <img class="wave wave-two" :class="{ 'filter-active': isLighthouseOn }" src="../assets/img/wave-2.png" alt="wave"/>
@@ -349,7 +413,7 @@ body {
 }
 
 .logo {
-  width: 1200px;
+  font-size: 150px;
   position: absolute;
   top: 100px;
   left: 50%;
@@ -357,6 +421,8 @@ body {
   margin: 0 auto;
   display: block;
   z-index: 1;
+  color: #2a2a2a;
+  /* text-shadow: 0 0 5px #c5c5c5, 0 0 10px #c5c5c5, 0 0 15px #c5c5c5, 0 0 20px #3cd013, 0 0 30px #3cd013, 0 0 40px #3cd013, 0 0 55px #3cd013, 0 0 75px #3cd013; */
 }
 
 .wave {
