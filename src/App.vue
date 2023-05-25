@@ -9,12 +9,15 @@ const isLoading = ref(true);
 
 
 onMounted(() => {
+  window.scrollTo(0, 0);
+  
   setTimeout(() => {
     
     gsap.to(".loading-container", {
     opacity: 0,
     duration: 0.5,
     onComplete: () => {
+      document.querySelector(".sea-container").style.display = "block";
       document.querySelector(".loading-container").style.display = "none";
       isLoading.value = false;
     }
@@ -47,12 +50,15 @@ function removeOverflowHidden() {
 <template>
   <loading class="loading-container"/>
   <div>
-    <Sea :isLoading="isLoading"/>
-    <Musics/>
+    <Sea :isLoading="isLoading" class="sea-container"/>
+    <Musics v-if="!isLoading"/>
   </div>
 </template>
 <!-- put style type to scss -->
 <style lang="scss" scope>
+.sea-container{
+  display: none;
+}
 .overflow-hidden {
   
   overflow: hidden !important;
