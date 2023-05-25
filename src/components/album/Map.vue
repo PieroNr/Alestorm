@@ -7,13 +7,14 @@ import boussole from './icons/boussole.vue'
 import island2 from './icons/island2.vue'
 import island from './icons/island.vue'
 import sun from './icons/sun.vue'
+//@ts-ignore
 import {random} from '@georgedoescode/generative-utils'
 import {onBeforeMount, onMounted, ref, shallowRef} from "vue";
 import {gsap} from "gsap";
 
 const movement = 30;
 
-function shuffle(array: unknown[]): unknown[] {
+function shuffle<T>(array: T[]): T[] {
   let currentIndex = array.length, randomIndex;
 
   // While there remain elements to shuffle...
@@ -51,12 +52,18 @@ const positions = [
 ]
 const remainingPositions = shuffle([...positions])
 
-function getPosition() {
+function getPosition() : string {
   return remainingPositions.pop()
 }
 
 
-const randomPosElements = shallowRef([])
+const randomPosElements = shallowRef<{
+  x: number,
+  y: number,
+  size: number,
+  position: string,
+  el: HTMLElement
+}[]>([])
 
 const mapElements = ref<HTMLElement[]>([])
 const mapElementAnimations = ref([])

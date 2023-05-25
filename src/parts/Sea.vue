@@ -1,4 +1,5 @@
 <script setup lang="ts">
+//@ts-ignore
 import {onMounted, ref, watch, defineProps } from 'vue';
 import {gsap} from 'gsap';
 import { TextPlugin } from "gsap/TextPlugin";
@@ -165,6 +166,8 @@ const generateClouds = () => {
 
   const container = document.querySelector('.clouds-container');
 
+  if(!container) return
+
   for (let i = 1; i <= numClouds; i++){
     const cloud = document.createElement('img');
     cloud.classList.add('cloud');
@@ -192,6 +195,8 @@ const generateStars = () => {
   const maxSize = 4; // Taille maximale des étoiles
 
   const container = document.querySelector('.stars-container');
+
+  if(!container) return
 
   for (let i = 0; i < numStars; i++) {
     const star = document.createElement('div');
@@ -296,7 +301,7 @@ const animateWaves = () => {
   });
 };
 
-const parallax = (event) => {
+const parallax = (event: MouseEvent) => {
   const { clientX, clientY } = event;
   const { innerWidth, innerHeight } = window;
   const xPos = (clientX / innerWidth) * 100; // Position horizontale en pourcentage

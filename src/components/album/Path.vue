@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// @ts-nocheck
 import {onBeforeUnmount, onMounted, ref} from "vue";
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {onMounted, ref, defineProps, onBeforeUnmount, watchEffect  } from 'vue';
+import {onMounted, ref, onBeforeUnmount, watchEffect  } from 'vue';
 import Sea from "./parts/Sea.vue";
 import Musics from "./parts/Musics.vue";
 import Band from './parts/Band.vue'

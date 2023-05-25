@@ -1,4 +1,5 @@
 <script setup lang="ts">
+//@ts-ignore
 import {Sketch} from "../../fake3d/Sketch.js";
 import {onMounted, ref} from "vue";
 
