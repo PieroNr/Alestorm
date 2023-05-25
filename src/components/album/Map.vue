@@ -167,7 +167,7 @@ function onMouseLeave(index: number, event: MouseEvent) {
   display: grid;
   height: 800px;
 
-  overflow-x: hidden;
+  overflow: hidden;
 
   .elements, .path {
     grid-area: 1/1;
@@ -180,7 +180,7 @@ function onMouseLeave(index: number, event: MouseEvent) {
 
   .elements {
     height: 70%;
-    max-width: 800px;
+    width: 80%;
     margin: 0 auto;
     align-self: center;
     display: grid;
@@ -201,8 +201,8 @@ function onMouseLeave(index: number, event: MouseEvent) {
       justify-content: center;
 
       svg {
-        width: 50%;
-        height: 50%;
+        width: 80%;
+        height: 80%;
       }
     }
 

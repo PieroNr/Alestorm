@@ -147,14 +147,14 @@ const preLoading = () => {
       document.body.classList.remove('overflow-hidden');
     }},"<")
 
-   
+
 }
 
 watch(props, (newValue) => {
-  
+
   if (!newValue.isLoading) {
    preLoading();
-   
+
   }
 });
 
@@ -348,7 +348,7 @@ onMounted(() => {
   generateClouds();
   swayBoat();
   animateLogo();
-  
+
 });
 
 
@@ -491,6 +491,7 @@ body {
   z-index: 2;
   -webkit-filter: drop-shadow(5px 5px 5px #000000);
   filter: drop-shadow(2px 2px 10px #000000);
+  cursor: pointer;
 }
 
 </style>

@@ -20,8 +20,8 @@ const options = {
   tension: 1,
   close: true,
   range: {
-    x: 20,
-    y: 20
+    x: 40,
+    y: 40
   },
   axis: ["x", "y"]
 }
@@ -29,14 +29,19 @@ const transformCoords = ref<null | any>(null)
 
 function generate(svg: Container) {
   const {width,height} = svg.viewbox();
-  const stepSize = height / numSteps;
+  const stepSize = height / (numSteps - 2);
   // clear the contents of the icons
   svg.clear();
 
+  points.value.push({
+    y: 0,
+    x: width / 2
+  })
+
   // plot 10 equally spaced points along the canvas width
-  for (let y = 0; y <= height; y += stepSize) {
+  for (let y = stepSize; y <= height - stepSize; y += stepSize) {
     // y = vertical center of the viewport (100) +/- 10
-    const x = random(40, 150);
+    const x = random(100, 400);
 
     // render an svg circle at the current { x, y } position
 
@@ -46,6 +51,11 @@ function generate(svg: Container) {
       y
     });
   }
+
+  points.value.push({
+    y: height,
+    x: width / 2
+  })
 
   liquidPoints.value = [...points.value]
 
@@ -59,7 +69,7 @@ function generate(svg: Container) {
   // render an svg <path> using the spline path data
   currentPath.value = svg.path(pathData).stroke({
     color: 'white',
-    width: 6,
+    width: 7,
     dasharray: "20 20",
     linejoin: 'round'
   }).fill("none");
@@ -165,7 +175,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <svg class="container" :height="svgHeight" viewBox="0 0 193 691" fill="none" xmlns="http://www.w3.org/2000/svg"
+  <svg class="container" :height="svgHeight" viewBox="0 0 500 691" fill="none" xmlns="http://www.w3.org/2000/svg"
        ref="container">
   </svg>
 

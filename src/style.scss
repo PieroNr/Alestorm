@@ -19,7 +19,7 @@ body{
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background: #171921;
-  
+
 
 
   font-synthesis: none;
@@ -104,5 +104,13 @@ body[data-theme="light"] {
 
   .cls-2 {
     stroke:#171921 !important;
+  }
+
+  .texture {
+    mix-blend-mode: color-burn;
+  }
+
+  * {
+    font-family: "Comic Sans MS";
   }
 }
