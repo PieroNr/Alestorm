@@ -4,5 +4,6 @@ import glsl from 'vite-plugin-glsl';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: import.meta.env.MODE === "production" ? '/alestorm' : '/',
   plugins: [vue(), glsl()],
 })
