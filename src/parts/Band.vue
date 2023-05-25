@@ -1,9 +1,50 @@
 <script setup lang="ts">
-import Path from "../components/album/Path.vue";
+import Map from "../components/album/Map.vue";
+import {onMounted} from "vue";
+import {gsap} from "gsap";
+
+onMounted(() => {
+  const timeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.archipel',
+      start: 'top 10%',
+      end: '+=500',
+      scrub: 0.1,
+      pin:true,
+      snap:0.1
+    }
+  })
+  timeline.from('.img-1', {
+   x: '-80vh',
+    duration: 1,
+    ease: "power2.easeOut"
+  })
+  timeline.from('.img-2', {
+    x: '80vh',
+    duration: 1,
+    ease: "power2.easeOut"
+  })
+  timeline.from('.img-3', {
+    x: '80vh',
+    duration: 1,
+    ease: "power2.easeOut"
+  })
+  timeline.from('.img-4', {
+    x: '-80vh',
+    duration: 1,
+    ease: "power2.easeOut"
+  })
+  timeline.from('.img-5', {
+    y: '80vh',
+    duration: 1,
+    ease: "power2.easeOut"
+  })
+})
+
 </script>
 
 <template>
-  <Path svg-height="500"/>
+  <Map />
 
   <div class="archipel">
     <img class="img-1" src="../assets/img/alestorm1.png"/>
@@ -17,16 +58,19 @@ import Path from "../components/album/Path.vue";
 
 <style scoped lang="scss">
 .archipel {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  overflow:hidden ;
   position: relative;
+
+  --image-size: 40vh;
 
   > * {
     position: absolute;
   }
 
   .title {
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 5rem;
@@ -35,32 +79,32 @@ import Path from "../components/album/Path.vue";
   }
 
   .img-1 {
-    top: 0;
-    left: 0;
-    width: 50%;
+    top: 15px;
+    left: 40px;
+    height: var(--image-size);
   }
 
   .img-2 {
-    top: 0;
-    right: 0;
-    width: 50%;
+    top: 80px;
+    right: 30px;
+    height: var(--image-size);
   }
 
   .img-3 {
     bottom: 0;
     right: 0;
-    width: 50%;
+    height: var(--image-size);
   }
 
   .img-4 {
-    bottom: 0;
-    left: 0;
-    width: 50%;
+    bottom: 88px;
+    left: 45px;
+    height: var(--image-size);
   }
   .img-5 {
-    bottom: 0;
-    left: 50%;
-    width: 50%;
+    bottom: 27px;
+    left: 39%;
+    height: var(--image-size);
   }
 }
 </style>

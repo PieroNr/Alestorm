@@ -124,7 +124,7 @@ const albums :AlbumData[] = [{
 <style scoped lang="scss">
 .musics {
   width: 100%;
-  padding: 20vh 0;
+  padding: 20vh 0 5vh 0;
 
   h2 {
     margin-bottom: 10vh;
