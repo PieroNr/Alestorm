@@ -4,9 +4,18 @@ import {onMounted, ref, watch, defineProps } from 'vue';
 import {gsap} from 'gsap';
 import { TextPlugin } from "gsap/TextPlugin";
 import boat from '../assets/img/boat.png'
+import duck from '../assets/img/plastic-Duck.png'
 import lighthouseOff from '../assets/svg/lightHouse-off.svg'
-
+import lighthouseOn from '../assets/svg/lightHouse-on.svg'
+import cloud1 from '../assets/img/cloud-1.svg'
+import cloud2 from '../assets/img/cloud-2.svg'
+import cloud3 from '../assets/img/cloud-3.svg'
+import cloud4 from '../assets/img/cloud-4.svg'
+import cloud5 from '../assets/img/cloud-5.svg'
+import {random} from '@georgedoescode/generative-utils'
 gsap.registerPlugin(TextPlugin);
+
+const clouds = [cloud1, cloud2, cloud3, cloud4, cloud5]
 
 const boatSrc = ref(boat);
 const lighthouseSrc = ref(lighthouseOff);
@@ -21,8 +30,8 @@ const props = defineProps({
 });
 
 const toggleLighthouse = () => {
-  const lighthouseNewSrc = lighthouseSrc.value.includes('off') ? '/src/assets/svg/lightHouse-on.svg' : '/src/assets/svg/lightHouse-off.svg';
-  const boatNewSrc = lighthouseSrc.value.includes('off') ? '/src/assets/img/plastic-Duck.png' : '/src/assets/img/boat.png';
+  const lighthouseNewSrc = lighthouseSrc.value.includes('off') ? lighthouseOn : lighthouseOff;
+  const boatNewSrc = lighthouseSrc.value.includes('off') ? duck : boat;
 
   setTimeout(() => {
     document.body.classList.add('transition-active');
@@ -173,7 +182,7 @@ const generateClouds = () => {
   for (let i = 1; i <= numClouds; i++){
     const cloud = document.createElement('img');
     cloud.classList.add('cloud');
-    cloud.src = '/cloud-'+ Math.ceil(i/2) +'.svg';
+    cloud.src = random(clouds);
 
     const x = Math.random() * window.innerWidth - minSize;
     const y = Math.random() * window.innerHeight - maxSize;
