@@ -46,6 +46,7 @@ function removeOverflowHidden() {
 }
 
 
+import Band from "./parts/Band.vue";
 </script>
 
 <template>
