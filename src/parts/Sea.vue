@@ -3,11 +3,13 @@
 import {onMounted, ref, watch, defineProps } from 'vue';
 import {gsap} from 'gsap';
 import { TextPlugin } from "gsap/TextPlugin";
+import boat from '../assets/img/boat.png'
+import lighthouseOff from '../assets/svg/lightHouse-off.svg'
 
 gsap.registerPlugin(TextPlugin);
 
-const boatSrc = ref('/src/assets/img/boat.png');
-const lighthouseSrc = ref('/src/assets/svg/lightHouse-off.svg');
+const boatSrc = ref(boat);
+const lighthouseSrc = ref(lighthouseOff);
 const lighthouseOpacity = ref(1);
 const isLighthouseOn = ref(false);
 
@@ -171,7 +173,7 @@ const generateClouds = () => {
   for (let i = 1; i <= numClouds; i++){
     const cloud = document.createElement('img');
     cloud.classList.add('cloud');
-    cloud.src = '/src/assets/svg/cloud-'+ Math.ceil(i/2) +'.svg';
+    cloud.src = '/cloud-'+ Math.ceil(i/2) +'.svg';
 
     const x = Math.random() * window.innerWidth - minSize;
     const y = Math.random() * window.innerHeight - maxSize;

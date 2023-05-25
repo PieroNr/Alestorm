@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import {AlbumData} from "../types/AlbumData.ts";
 import AlbumComponent from "../components/album/Album.vue";
+import cover1 from '../assets/covers/cover1.jpg'
+import cover2 from '../assets/covers/cover2.jpg'
+import cover1H from '../assets/covers/cover1-heightmap.png'
+import cover2H from '../assets/covers/cover2-heightmap.png'
 
 const albums :AlbumData[] = [{
   title: "SEVENTH RUM OF A SEVENTH RUM",
   label:  "Napalm Records",
   date: "24/06/2022",
-  cover: "/covers/cover1.jpg",
-  heightCover: "/covers/cover1-heightmap.png",
+  cover: cover1,
+  heightCover: cover1H,
   songs: [
     {
       title: "Magellan's Expedition",
@@ -58,8 +62,8 @@ const albums :AlbumData[] = [{
   title: "CURSE OF THE CRYSTAL COCONUT",
   label:  "Napalm Records",
   date: "24/05/2020",
-  cover: "/covers/cover2.jpg",
-  heightCover: "/covers/cover2-heightmap.png",
+  cover: cover2,
+  heightCover: cover2H,
   songs: [
     {
       title: "Treasure Chest Party Quest",
